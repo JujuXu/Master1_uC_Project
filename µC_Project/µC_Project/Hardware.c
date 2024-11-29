@@ -37,5 +37,8 @@ void Init_Hardware(void)
 	SET_BIT(PCMSK2,PCINT21); // RIGHT
 	SET_BIT(PCMSK2,PCINT22); // ENTER
 	
+	// ADC
+	
+	
 }
 //CONTENU FONCTIONS INTERNES

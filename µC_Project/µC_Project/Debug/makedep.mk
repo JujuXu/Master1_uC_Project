@@ -18,6 +18,8 @@ OS.c
 
 SPI.c
 
+TC74.c
+
 TIMERS.c
 
 USART.c

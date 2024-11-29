@@ -4,7 +4,10 @@
 #include "lcd.h"
 #include "Main.h"
 #include "TIMERS.h"
+#include "TC74.h"
+#include "I2C_Master.h"
 
+extern unsigned char TWI_buf[TWI_BUFFER_SIZE];
 
 int main(void)
 {
@@ -16,6 +19,10 @@ int main(void)
 	
 	OS_Init();
 	
+	TWI_Master_Initialise();
+	
+	Callbacks_Record_Timer(TC74_Temp_Read,100);
+	
 	OS_Start();
 	
 	return 0;
@@ -23,19 +30,56 @@ int main(void)
 
 char viewTemp(char input)
 {
+	char string[3];
+	
+	signed char value = TC74_BCDtoChar(TWI_buf[1]);
+	static signed char last_value;
+	
 	static unsigned char FIF = TRUE; // first in function
 	
 	if (FIF)
 	{
+		TC74_Temp_Read();
+		
+		last_value = value +1;
+		
 		FIF = FALSE;
 	}
-	else
+	else 
 	{
-		if (input != ENTER)
+		if (value != last_value)
 		{
-			
+			// -127 to -63 good
+			if (value < -65)
+			{
+				Usart0_Tx_String("viewTemp overflow: ");
+				Usart0_Tx_String(itoa(value, string, 10));
+				Usart0_Tx('\r');
+				
+				lcd_gotoxy(0,1);
+				lcd_puts("                ");
+				lcd_gotoxy(0,1);
+				
+				lcd_puts("Overflow !");
+			}
+			else
+			{
+				lcd_gotoxy(0,1);
+				lcd_puts("                ");
+				lcd_gotoxy(0,1);
+				
+				lcd_puts(itoa(value, string, 10));
+				lcd_putc((char)(223));
+				lcd_puts("C");
+				
+				last_value = value;
+				
+				Usart0_Tx_String(itoa(value, string, 10));
+				Usart0_Tx('\r');
+			}
 		}
-		else
+		
+		if (input == ENTER)
 		{
 			FIF = TRUE;
 			return ST_TXT_Temp;
