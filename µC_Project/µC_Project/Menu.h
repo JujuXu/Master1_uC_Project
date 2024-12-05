@@ -23,10 +23,10 @@ typedef struct PROGMEM
 } MENU_STATE;
 
 // Menu text
-const char Txt_Temp[] PROGMEM 		=	"Temperature:";
-const char Txt_ADC[] PROGMEM 		=	"ADC:";
-const char Txt_ADC_G[] PROGMEM 		=	"Gain ADC:";
-const char Txt_DPOT[] PROGMEM 		=	"DPOT Range:";
+const char Txt_Temp[] PROGMEM 		=	"Temp Menu";
+const char Txt_ADC[] PROGMEM 		=	"ADC";
+const char Txt_ADC_G[] PROGMEM 		=	"Gain ADC";
+const char Txt_DPOT[] PROGMEM 		=	"Digital POT";
 
 
 const MENU_NEXTSTATE menu_nextstate[] PROGMEM = {

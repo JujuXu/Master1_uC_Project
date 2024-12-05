@@ -4,12 +4,12 @@
 // DEFINE
 
 // FONCTIONS VISIBLES
-void ADC_init(void);
+void ADC_INIT(void);
 void ADC_ON(void);
 void ADC_OFF(void);
 void ADC_setGain(char gain);
-unsigned int Conversion_ADC_10bits(void);
+unsigned int ADC_CONVERT_10BITS(void);
 
-enum {X1, X10, X100};
+enum {X1, X10, X200};
 
 #endif

@@ -43,6 +43,7 @@ C_SRCS +=  \
 ../I2C_Master.c \
 ../lcd.c \
 ../main.c \
+../MCP4151.c \
 ../OS.c \
 ../SPI.c \
 ../TC74.c \
@@ -63,6 +64,7 @@ Hardware.o \
 I2C_Master.o \
 lcd.o \
 main.o \
+MCP4151.o \
 OS.o \
 SPI.o \
 TC74.o \
@@ -76,6 +78,7 @@ Hardware.o \
 I2C_Master.o \
 lcd.o \
 main.o \
+MCP4151.o \
 OS.o \
 SPI.o \
 TC74.o \
@@ -89,6 +92,7 @@ Hardware.d \
 I2C_Master.d \
 lcd.d \
 main.d \
+MCP4151.d \
 OS.d \
 SPI.d \
 TC74.d \
@@ -102,6 +106,7 @@ Hardware.d \
 I2C_Master.d \
 lcd.d \
 main.d \
+MCP4151.d \
 OS.d \
 SPI.d \
 TC74.d \
@@ -158,6 +163,13 @@ LINKER_SCRIPT_DEP+=
 	
 
 ./main.o: .././main.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -mrelax -g2 -Wall -mmcu=atmega1284p -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega1284p" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+./MCP4151.o: .././MCP4151.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -mrelax -g2 -Wall -mmcu=atmega1284p -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega1284p" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 

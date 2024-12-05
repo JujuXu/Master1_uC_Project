@@ -14,6 +14,8 @@ lcd.c
 
 main.c
 
+MCP4151.c
+
 OS.c
 
 SPI.c

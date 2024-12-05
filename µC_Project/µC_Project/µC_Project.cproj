@@ -158,6 +158,12 @@
     <Compile Include="Main.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="MCP4151.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCP4151.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="Menu.h">
       <SubType>compile</SubType>
     </Compile>
